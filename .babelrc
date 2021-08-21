@@ -1,0 +1,19 @@
+{
+  "presets": [["@babel/preset-env", { "targets": { "esmodules": true } }]],
+  "plugins": [
+    "inline-dotenv",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "~api": "./src/api",
+          "~middlewares": "./src/middlewares",
+          "~models": "./src/models",
+          "~utils": "./src/utils"
+        }
+      }
+    ]
+  ],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

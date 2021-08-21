@@ -1,0 +1,80 @@
+{
+  "name": "express-server-boilerplate",
+  "version": "1.0.0",
+  "description": "API Server using ExpressJS",
+  "main": "src/index.js",
+  "keywords": [],
+  "author": "Phong Pham",
+  "license": "ISC",
+  "scripts": {
+    "build": "npm run clean && npm run transpile",
+    "clean": "rimraf ./dist",
+    "transpile": "webpack --config webpack.config.js",
+    "start": "npm run build && node ./dist",
+    "dev": "nodemon",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "pretty": "prettier --write src/**/*.{js,json} !node_modules/**",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.(js|json)": [
+      "prettier --write"
+    ],
+    "*.(js)": [
+      "eslint --fix ./src",
+      "eslint ./src"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "nodemonConfig": {
+    "exec": "babel-node ./src/index.js",
+    "watch": [
+      "./src/**/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "helmet": "^4.6.0",
+    "json2csv": "^5.0.6",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.7",
+    "mongoose-paginate-v2": "^1.4.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-inline-dotenv": "^1.6.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "dotenv-webpack": "^7.0.2",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
+    "webpack": "^5.26.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
